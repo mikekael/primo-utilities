@@ -1,0 +1,45 @@
+{
+  "name": "primo-utils",
+  "version": "0.0.1-beta",
+  "description": "One stop shop for reusable utilities for common development pitfalls",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs"
+    },
+    "./*": {
+      "import": "./dist/esm/*.js",
+      "require": "./dist/cjs/*.js"
+    }
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "build": "vite build && tsc -p tsconfig.build.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikekael/primo-utilities.git"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "author": "Primo SW Labs <primoswlabs@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikekael/primo-utilities/issues"
+  },
+  "homepage": "https://github.com/mikekael/primo-utilities#readme",
+  "devDependencies": {
+    "rollup-plugin-dts": "^6.2.3",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.6"
+  }
+}
