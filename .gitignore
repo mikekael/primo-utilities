@@ -7,10 +7,6 @@ node_modules/
 # Vite cache
 .vite/
 
-# Editor
-.vscode/
-.idea/
-
-# Env
-.env
-
+# artifacts
+dist
+*.tgz
