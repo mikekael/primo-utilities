@@ -41,7 +41,17 @@ const _isPlainObject = (value: any): boolean => {
   } catch {
     return false;
   }
-}
+};
 
 // Checks if a given value is considered filled.
 export const filled = <T = any>(value: T): boolean => !blank(value);
+
+export type OptionalValue<V> = V | null | undefined;
+
+export const is_callable = (value: any): value is CallableFunction => {
+  if (blank(value)) {
+    return false;
+  }
+
+  return typeof value === 'function';
+};

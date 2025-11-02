@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { blank, filled } from './common';
+import { blank, filled, is_callable } from './common';
 
 test('blank should return true when value is null and undefined', () => {
   const isNull = null;
@@ -148,4 +148,24 @@ test('filled should return true when value is not an empty object', () => {
 
   expect(filled(isOneDimensionalObject)).toBeTruthy();
   expect(filled(isNestedObject)).toBeTruthy();
+});
+
+test('is_callable should return false when value is null or undefined', () => {
+  const isNull = null;
+  const isUndefined = undefined;
+
+  expect(is_callable(isNull)).toBeFalsy();
+  expect(is_callable(isUndefined)).toBeFalsy();
+});
+
+test('is_callable should return true when value is a function', () => {
+  class MyClass {
+    foo(): void { }
+  }
+
+  const isAMethod = (new MyClass).foo;
+  const isSimpleFunc = () => { };
+
+  expect(is_callable(isAMethod)).toBeTruthy();
+  expect(is_callable(isSimpleFunc)).toBeTruthy();
 });
