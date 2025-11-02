@@ -6,18 +6,21 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       formats: ['es', 'cjs'],
-      fileName: (format) => format === 'es' ? 'index.esm.js' : 'index.cjs.js'
     },
     rollupOptions: {
       // mark peer deps external
       external: [],
-      output: {
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-        exports: 'named'
-      }
+      output: [
+        { format: 'es', dir: 'dist/esm', entryFileNames: '[name].js', preserveModules: true },
+        { format: 'cjs', dir: 'dist/cjs', entryFileNames: '[name].cjs', preserveModules: true }
+      ]
     }
   },
-  plugins: [dts({ insertTypesEntry: true })]
+  plugins: [
+    dts({
+      insertTypesEntry: true,
+      exclude: ['src/**/*.test.ts'],
+    }),
+  ]
 });
 
